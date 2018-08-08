@@ -88,10 +88,17 @@ public class RegistrationActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
                                             if(task.isSuccessful()){
+
+                                                MyFirebaseInstanceIDService fi = new MyFirebaseInstanceIDService();
+                                                fi.onTokenRefresh();
+
+                                                String tokenId = fi.getToken_id();
                                                 String download_url = task.getResult().getDownloadUrl().toString();
+
                                                 Map<String,Object> userMap = new HashMap<>();
                                                 userMap.put("name",my_name);
                                                 userMap.put("image",download_url);
+                                                userMap.put("tokenId",tokenId);
 
                                                 mFirestore.collection("Users").document(user_id).set(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
