@@ -36,13 +36,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         final Users user = users.get(position);
         holder.user_name.setText(user.getName());
 
-        final String user_id = user.userId;
-
         holder.user_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,TestActivity.class);
-                intent.putExtra("user_id",user_id);
+                intent.putExtra("user_id",user.getUser_id());
                 intent.putExtra("user_name",user.getName());
                 intent.putExtra("user_image",user.getImage());
                 context.startActivity(intent);

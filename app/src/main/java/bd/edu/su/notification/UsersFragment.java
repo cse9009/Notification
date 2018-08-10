@@ -65,7 +65,8 @@ public class UsersFragment extends Fragment {
 
                         String user_id = doc.getDocument().getId();
 
-                        Users user = doc.getDocument().toObject(Users.class).withId(user_id);
+                        Users user = doc.getDocument().toObject(Users.class);
+                        user.setUser_id(user_id);
                         users.add(user);
 
                         recyclerAdapter.notifyDataSetChanged();
